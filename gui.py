@@ -377,21 +377,21 @@ def dataModification():
         for entry in [memberIDEntry, cardIDEntry, barcodeEntry, nameEntry, genderEntry]:
             entry.delete(0, END)
 
-    def getAttributes():
+    def getAttributes(unique = False):
         attributes = []
         blank = ["", None]
         if memberIDEntry.get() not in blank: 
-            if admin.checkUnique("Member ID", memberIDEntry.get().strip("\n")) == False:
+            if unique and admin.checkUnique("Member ID", memberIDEntry.get().strip("\n")) == False:
                     messagebox.showinfo("Invalid Input", "This Member ID has been occupied.")
                     return None
             attributes.append(["Member ID", memberIDEntry.get().strip("\n")])
         if cardIDEntry.get() not in blank: 
-            if admin.checkUnique("Card ID", cardIDEntry.get().strip("\n")) == False:
+            if unique and admin.checkUnique("Card ID", cardIDEntry.get().strip("\n")) == False:
                 messagebox.showinfo("Invalid Input", "This Card ID has been occupied.")
                 return None
             attributes.append(["Card ID", cardIDEntry.get().strip("\n")])
         if barcodeEntry.get() not in blank: 
-            if admin.checkUnique("Barcode", barcodeEntry.get().strip("\n")) == False:
+            if unique and admin.checkUnique("Barcode", barcodeEntry.get().strip("\n")) == False:
                 messagebox.showinfo("Invalid Input", "This barcode has been occupied.")
                 return None
             attributes.append(["Barcode", barcodeEntry.get().strip("\n")])
